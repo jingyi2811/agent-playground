@@ -1,0 +1,5 @@
+opencv-python>=4.8
+numpy>=1.24
+anthropic>=0.125
+# Optional, for the diffusion poster (large downloads):
+#   pip install torch diffusers transformers accelerate

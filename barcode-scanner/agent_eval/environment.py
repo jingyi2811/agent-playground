@@ -28,6 +28,12 @@ class Environment:
     count: int = 40
     baseline: dict = field(default_factory=dict)
 
+    def __post_init__(self) -> None:
+        # Subprocesses run with cwd=workdir, so relative paths would resolve
+        # inside the sandbox and land the datasets in the wrong place.
+        self.workdir = os.path.abspath(self.workdir)
+        self.hidden_dir = os.path.abspath(self.hidden_dir)
+
     @property
     def dev_images(self) -> str:
         return os.path.join(self.workdir, "data", "images")
